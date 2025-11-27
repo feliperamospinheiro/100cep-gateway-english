@@ -136,28 +136,7 @@ As respostas detalhadas estão em:
 
 ---
 
-# 📁 6. Estrutura do Repositório
-/
-├── README.md
-├── notebooks/
-│ ├── 01_bronze_ingestion.py
-│ ├── 02_silver_cleaning.py
-│ ├── 03_gold_analytics.py
-│ └── utils/
-├── data/ (opcional para versionamento)
-├── docs/
-│ ├── business_questions.md
-│ ├── data_catalog.md
-│ ├── etl_documentation.md
-│ ├── analysis.md
-│ └── screenshots/
-└── architecture/
-├── lakehouse_diagram.png
-└── erd.png
-
----
-
-# 📝 7. Autoavaliação
+# 📝 6. Autoavaliação
 
 Discussão final sobre:
 
@@ -173,5 +152,5 @@ Arquivo: `/docs/self_assessment.md`
 # 👨‍💻 Autor
 
 **Felipe Pinheiro**  
-LinkedIn: *link aqui*  
-GitHub: *link aqui*
+LinkedIn: *[link aqui](https://www.linkedin.com/in/feliperamospinheiro/)*  
+GitHub: *[link aqui](https://github.com/feliperamospinheiro)*
