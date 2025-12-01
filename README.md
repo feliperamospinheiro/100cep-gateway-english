@@ -157,6 +157,7 @@ Arquivo: `/docs/self_assessment.md`
 # 👨‍💻 Autor
 
 **Felipe Pinheiro**  
+<<<<<<< HEAD
 [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:felipervmospinheiro@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/feliperamospinheiro)
 
@@ -165,4 +166,18 @@ Arquivo: `/docs/self_assessment.md`
 Dataset: *[Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)*  
 Autor: Olist & André Sionek  
 DOI Citation: *[DOI](https://doi.org/10.34740/kaggle/dsv/195341)*  
+=======
+LinkedIn: *[link aqui](https://www.linkedin.com/in/feliperamospinheiro/)*  
+
+GitHub: *[link aqui](https://github.com/feliperamospinheiro)*
+
+# Créditos
+
+Dataset: *[Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)*
+
+Autor: Olist & André Sionek
+
+DOI Citation: *[DOI](https://doi.org/10.34740/kaggle/dsv/195341)*
+
+>>>>>>> 75803853d5356138f6a62005bc4c6b5ecdbc59ae
 Licença: *[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
