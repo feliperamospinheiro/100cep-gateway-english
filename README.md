@@ -1,4 +1,4 @@
-<h1 align="center">100cep Gateway</h1>[1]
+<h1 align="center">100cep Gateway</h1>
 
 <p align="center"> <img src="./logo/100cep-gateway.png" alt="Logo 100cep Gateway" width="100%"></p>
 
