@@ -1,85 +1,61 @@
 # Catálogo de Dados — 100cep Gateway
-
-Este catálogo descreve os dados usados nas camadas Bronze, Silver e Gold, incluindo domínios, tipos e valores esperados.
-
 ---
 
-# 🟫 Bronze (Raw)
+# 🥇 Gold
 
-| Tabela | Descrição |
-|-------|-----------|
-| bronze_orders | Dados brutos de pedidos |
-| bronze_payments | Dados brutos de pagamentos |
-| bronze_items | Dados brutos de itens do pedido |
-| bronze_customers | Dados brutos de clientes |
-| bronze_sellers | Dados brutos de sellers |
+| Coluna | Tipo | Descrição |
+| ------ | ---- | --------- |
+| chargeback_id | Descrição |
+| motivo_chargeback | Descrição |
+| status_chargeback | Descrição |
+| resposta_emitente | Descrição |
+| resposta_adquirente | Descrição |
 
----
+### dim_clientes
+| Coluna | Tipo | Descrição |
+| ------ | ---- | --------- |
+| cliente_id | String | Unique identifier for each client, consisting of 13 alphanumeric characters in lowercase. / Identificador único para cada cliente, composto por 13 caracteres alfanuméricos em minúsculas. |
+| cep_prefixo | Tipo | Descrição |
 
-# 🟧 Silver (Cleaned)
 
-## silver_orders
-| Coluna | Tipo | Domínio | Descrição |
-|--------|------|---------|-----------|
-| order_id | string | UUID | Identificador do pedido |
-| customer_id | string | UUID | Cliente |
-| order_status | string | {delivered, shipped, canceled, ...} | Status |
-| order_purchase_timestamp | timestamp | >=2016 | Momento da compra |
-| order_delivered_customer_date | timestamp | null ou >= purchase | Entrega |
+### dim_data
+| Coluna | Tipo | Descrição |
+| ------ | ---- | --------- |
+| data_calendario | Tipo | Descrição |
+| dia | Tipo | Descrição |
+| mes | Tipo | Descrição |
+| ano | Tipo | Descrição |
+| nome_dia_semana | Tipo | Descrição |
+| nome_mes | Tipo | Descrição |
 
-## silver_payments
-| Coluna | Tipo | Domínio | Descrição |
-|--------|------|---------|-----------|
-| order_id | string | UUID existente | Chave com orders |
-| payment_sequential | int | >= 1 | Número do pagamento |
-| payment_type | string | {credit_card, boleto, voucher, debit_card} | Método |
-| payment_installments | int | 1–24 | Parcelas |
-| payment_value | double | >= 0 | Valor pago |
+### dim_geolocalizacao
+| Coluna | Tipo | Descrição |
+| ------ | ---- | --------- |
+| cep_prefixo | Tipo | Descrição |
+| cidade | Tipo | Descrição |
+| estado | Tipo | Descrição |
+| latitude | Tipo | Descrição |
+| longitude | Tipo | Descrição |
 
-## silver_items
-| Coluna | Tipo | Domínio | Descrição |
-|--------|------|---------|-----------|
-| order_id | string | UUID | Pedido |
-| seller_id | string | UUID | Loja |
-| price | double | >= 0 | Preço do item |
-| freight_value | double | >= 0 | Frete |
+### dim_pagamentos
+| Coluna | Tipo | Descrição |
+| ------ | ---- | --------- |
+| id_pagamento | Tipo | Descrição |
+| tipo_pagamento | Tipo | Descrição |
+| nivel_risco | Tipo | Descrição |
 
-## silver_customers
-| Coluna | Tipo | Domínio | Descrição |
-|--------|------|---------|-----------|
-| customer_id | string | UUID | Cliente |
-| customer_city | string | A–Z | Cidade |
-| customer_state | string | 2 letras | Estado |
+### dim_vendedores
+| Coluna | Tipo | Descrição |
+| ------ | ---- | --------- |
+| vendedor_id | String | Unique identifier for each seller, consisting of 13 alphanumeric characters in lowercase. / Identificador único para cada vendedor, composto por 13 caracteres alfanuméricos em minúsculas. |
+| cep_prefixo | Tipo | Descrição |
 
-## silver_sellers
-| Coluna | Tipo | Domínio | Descrição |
-|--------|------|---------|-----------|
-| seller_id | string | UUID | Loja |
-| seller_city | string | A–Z | Cidade |
-| seller_state | string | 2 letras | Estado |
-
----
-
-# 🟨 Gold (Analytics)
-
-## gold_transactions_summary
-| Coluna | Descrição |
-|--------|-----------|
-| date | Data |
-| total_orders | Pedidos realizados |
-| total_payments | Pagamentos |
-| gmv | Valor total processado |
-| avg_ticket | Ticket médio |
-| chargeback_rate | % Chargeback |
-
-## gold_chargeback_risk
-| Coluna | Descrição |
-|--------|-----------|
-| seller_id | Loja |
-| total_orders | Pedidos |
-| total_chargebacks | Disputas |
-| chargeback_rate | Taxa |
-| risk_score | Score calculado (0–1) |
+### fato_transacoes
+| Coluna | Tipo | Descrição |
+| ------ | ---- | --------- |
+| pedido_id | String | Unique identifier for each transaction, consisting of 13 alphanumeric characters in lowercase. / Identificador único para cada transação, composto por 13 caracteres alfanuméricos em minúsculas. |
+| cliente_id | String | Unique identifier for each client, consisting of 13 alphanumeric characters in lowercase. / Identificador único para cada cliente, composto por 13 caracteres alfanuméricos em minúsculas. |
+| vendedor_id | String | Unique identifier for each seller, consisting of 13 alphanumeric characters in lowercase. / Identificador único para cada vendedor, composto por 13 caracteres alfanuméricos em minúsculas. |
 
 ---
 

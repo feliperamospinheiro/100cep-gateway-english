@@ -132,13 +132,11 @@ Evidências em `/docs/screenshots/data_quality`.
 
 As análises Gold respondem perguntas como:
 
-- Qual o GMV da operação?  
-- Qual o ticket médio por seller, cidade e método de pagamento?  
-- Qual a taxa de chargeback total e por categoria?  
-- Quais sellers apresentam maior risco?  
-- Existem inconsistências entre pedidos e pagamentos?  
-- Atraso na entrega tem correlação com chargeback?  
-- Quais métodos têm maior proporção de disputas?  
+- **Qual o método de pagamento mais utilizado pelos clientes da 100cep Gateway?** 
+- **Qual o histórico de faturamento do ano de 2017?**  
+- **Qual a proporção de pedidos com e sem solicitação de chargeback?**  
+- **Quais métodos de pagamento têm maior risco de chargeback?**  
+- **Quais estados apresentam as maiores taxas de chargeback?**  
 
 As respostas detalhadas estão em:  
 📄 `/docs/analysis.md`
