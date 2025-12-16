@@ -64,5 +64,6 @@
 
 
 <h2 align="center">Linhagem de Dados</h2>
+
 - Kaggle → Bronze → Silver → Gold  
 - Transformações documentadas em `/docs/etl_documentation.md`.  
