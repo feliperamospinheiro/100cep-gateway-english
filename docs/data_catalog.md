@@ -1,7 +1,7 @@
 
 <h1 align="center">Catálogo de Dados</h1>
 
-### dim_chargebacks
+<h2 align="center">dim_chargebacks</h2>
 | Coluna | Tipo | Descrição | Description | 
 | ------ | ---- | --------- | ----------- | 
 | pedido_id | string | Identificador único para cada pedido de chargeback, composto por 13 caracteres alfanuméricos em minúsculas. | Unique identifier for each chargeback request, consisting of 13 alphanumeric characters in lowercase. |
@@ -10,14 +10,14 @@
 | resposta_emitente | string | Resposta fornecida pelo emissor do cartão em relação à solicitação de chargeback. | Response provided by the card issuer regarding the chargeback request. |
 | resposta_adquirente | string | Resposta fornecida pelo adquirente em relação à solicitação de chargeback. | Response provided by the acquirer regarding the chargeback request. |
 
-### dim_clientes
+<h2 align="center">dim_clientes</h2>
 | Coluna | Tipo | Descrição | Description | 
 | ------ | ---- | --------- | ----------- | 
 | cliente_id | string | Identificador único para cada cliente, composto por 13 caracteres alfanuméricos em minúsculas. | Unique identifier for each client, consisting of 13 alphanumeric characters in lowercase. |
 | cep_prefixo | string | Os primeiros 5 dígitos do CEP do cliente. | The first 5 digits of the client postal code. |
 
 
-### dim_data
+<h2 align="center">dim_data</h2>
 | Coluna | Tipo | Descrição | Description | 
 | ------ | ---- | --------- | ----------- | 
 | data_calendario | date | Data em que o pedido foi realizado. Formato: AAAA-MM-DD.| Date when the order was placed. Format: YYYY-MM-DD. |
@@ -27,7 +27,7 @@
 | nome_dia_semana | string | Nome do dia da semana correspondente à data. | Weekday name corresponding to the date. |
 | nome_mes | string | Nome do mês correspondente à data. | Month name corresponding to the date. |
 
-### dim_geolocalizacao
+<h2 align="center">dim_geolocalizacao</h2>
 | Coluna | Tipo | Descrição | Description | 
 | ------ | ---- | --------- | ----------- | 
 | cep_prefixo | string | Os primeiros 5 dígitos do CEP. | The first 5 digits of the ZIP code. |
@@ -36,13 +36,13 @@
 | latitude | string | Coordenada geográfica que especifica a posição norte-sul. | Geographic coordinate specifying the north-south position. |
 | longitude | string | Coordenada geográfica que especifica a posição leste-oeste. | Geographic coordinate specifying the east-west position. |
 
-### dim_vendedores
+<h2 align="center">dim_vendedores</h2>
 | Coluna | Tipo | Descrição | Description | 
 | ------ | ---- | --------- | ----------- | 
 | vendedor_id | string | Identificador único para cada vendedor, composto por 13 caracteres alfanuméricos em minúsculas. | Unique identifier for each seller, consisting of 13 alphanumeric characters in lowercase. |
 | cep_prefixo | string | Os primeiros 5 dígitos do CEP do vendedor. | The first 5 digits of the seller's postal code. |
 
-### fato_transacoes
+<h2 align="center">fato_transacoes</h2>
 | Coluna | Tipo | Descrição | Description | 
 | ------ | ---- | --------- | ----------- | 
 | pedido_id | string | Identificador único para cada transação, composto por 13 caracteres alfanuméricos em minúsculas. | Unique identifier for each transaction, consisting of 13 alphanumeric characters in lowercase. |
