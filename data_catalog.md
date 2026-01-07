@@ -13,33 +13,7 @@
 
 Este documento contém a **documentação completa** do modelo de dados da camada **Gold** do MVP 100cep Gateway. O modelo foi estruturado seguindo princípios de **Data Warehouse dimensional**, otimizado para análises de negócio.
 
-### 🎯 Objetivo
-
-Facilitar o entendimento e uso das tabelas analíticas, fornecendo:
-- ✅ Descrição detalhada de cada coluna
-- ✅ Tipos de dados e domínios
-- ✅ Relações entre tabelas (PKs e FKs)
-- ✅ Regras de negócio aplicadas
-- ✅ Tradução PT-BR ↔ EN
-
 ---
-
-## 🧩 Modelo Dimensional
-
-### Arquitetura Star Schema
-
-O modelo segue o padrão **Star Schema** com uma tabela fato central e dimensões relacionadas:
-
-```
-           dim_data
-               │
-               │
-    dim_clientes —— fato_transacoes —— dim_vendedores
-               │
-               ├—— dim_chargebacks
-               │
-               └—— dim_geolocalizacao
-```
 
 ### Tabela de Relacionamentos
 
@@ -48,27 +22,11 @@ O modelo segue o padrão **Star Schema** com uma tabela fato central e dimensõe
 | **fato_transacoes** | cliente_id | dim_clientes | cliente_id | N:1 |
 | **fato_transacoes** | vendedor_id | dim_vendedores | vendedor_id | N:1 |
 | **fato_transacoes** | data_pedido | dim_data | data_calendario | N:1 |
-| **fato_transacoes** | pedido_id | dim_chargebacks | pedido_id | 1:1 (opcional) |
+| **fato_transacoes** | pedido_id | dim_chargebacks | pedido_id | N:0,1 |
 | **dim_clientes** | cep_prefixo | dim_geolocalizacao | cep_prefixo | N:1 |
 | **dim_vendedores** | cep_prefixo | dim_geolocalizacao | cep_prefixo | N:1 |
 
-**Nota**: Nem todos os pedidos possuem chargeback (relação opcional).
-
----
-
-## 📋 Dicionário de Dados
-
----
-**Domínios de Valores**:
-- `estado`: Siglas dos 27 estados brasileiros (AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO)
-- `latitude`: -33.75 a 5.27 (limites do Brasil)
-- `longitude`: -73.99 a -34.79 (limites do Brasil)
-
-**Uso**:
-- Análises geográficas (mapas de calor)
-- Segmentação por estado/cidade
-- Cálculo de distâncias (frete, logística)
-- Identificação de regiões de risco
+**Nota**: Nem todos os pedidos possuem chargeback.
 
 ---
 
@@ -107,38 +65,6 @@ O modelo segue o padrão **Star Schema** com uma tabela fato central e dimensõe
 
 ---
 
-## 📈 Métricas Derivadas
-
-A partir deste modelo dimensional, podem ser calculadas diversas métricas de negócio:
-
-### Métricas Financeiras
-- **GMV (Gross Merchandise Value)**: `SUM(preco_total)`
-- **Receita de Frete**: `SUM(frete_total)`
-- **Ticket Médio**: `AVG(valor_transacao)`
-- **Faturamento Total**: `SUM(valor_transacao)`
-
-### Métricas de Risco
-- **Taxa de Chargeback**: `COUNT(DISTINCT chargebacks) / COUNT(DISTINCT transacoes)`
-- **Valor Médio de Chargeback**: `AVG(valor_transacao WHERE chargeback)`
-- **Perda por Chargeback**: `SUM(valor_transacao WHERE chargeback)`
-
-### Métricas Operacionais
-- **Número de Transações**: `COUNT(*)`
-- **Transações por Método**: `COUNT(*) GROUP BY tipo_pagamento`
-- **Taxa de Aprovação**: `COUNT(delivered) / COUNT(total)`
-
----
-
-## 🔗 Linhagem de Dados
-
-<p align="center"> <img src="./images/databricks/dim_clientes.jpg" alt="dim_clientes" width="100%"></p>
-
-| Coluna | Tipo | Descrição | Description | 
-| ------ | ---- | --------- | ----------- | 
-| cliente_id | string | Identificador único para cada cliente, composto por 13 caracteres alfanuméricos em minúsculas. | Unique identifier for each client, consisting of 13 alphanumeric characters in lowercase. |
-| cep_prefixo | string | Os primeiros 5 dígitos do CEP do cliente. | The first 5 digits of the client postal code. |
-
-
 <h2 align="center">dim_data</h2>
 
 <p align="center"> <img src="./images/databricks/dim_data.jpg" alt="dim_data" width="100%"></p>
@@ -158,7 +84,7 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 
 ---
 
-<h2 align="center">🌍 DIMENSÃO: dim_geolocalizacao</h2>
+<h2 align="center">dim_geolocalizacao</h2>
 
 **Tipo**: Dimensão Geográfica (Geography Dimension)  
 **Granularidade**: 1 registro = 1 prefixo de CEP (5 dígitos)  
@@ -180,7 +106,7 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 
 ---
 
-<h2 align="center">🏢 DIMENSÃO: dim_vendedores</h2>
+<h2 align="center">dim_vendedores</h2>
 
 **Tipo**: Dimensão (Dimension Table)  
 **Granularidade**: 1 registro = 1 vendedor (seller)  
@@ -193,7 +119,7 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 | vendedor_id | string | Identificador único para cada vendedor, composto por 13 caracteres alfanuméricos em minúsculas. | Unique identifier for each seller, consisting of 13 alphanumeric characters in lowercase. |
 | cep_prefixo | string | Os primeiros 5 dígitos do CEP do vendedor. | The first 5 digits of the seller's postal code. |
 
-<h2 align="center">📦 FATO: fato_transacoes</h2>
+<h2 align="center">fato_transacoes</h2>
 
 **Tipo**: Tabela Fato (Fact Table)  
 **Granularidade**: 1 registro = 1 transação de pagamento por pedido  
@@ -226,7 +152,7 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 
 ---
 
-<h2 align="center">📅 DIMENSÃO: dim_data</h2>
+<h2 align="center">dim_data</h2>
 
 **Tipo**: Dimensão Temporal (Time Dimension)  
 **Granularidade**: 1 registro = 1 dia  
@@ -250,14 +176,9 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 - `nome_dia_semana`: Segunda, Terça, Quarta, Quinta, Sexta, Sábado, Domingo
 - `nome_mes`: Janeiro, Fevereiro, Março, ..., Dezembro
 
-**Uso**:
-- Análises temporais (faturamento mensal, sazonalidade)
-- Agrupamentos por dia da semana, mês, ano
-- Séries temporais
-
 ---
 
-<h2 align="center">👥 DIMENSÃO: dim_clientes</h2>
+<h2 align="center">dim_clientes</h2>
 
 **Tipo**: Dimensão (Dimension Table)  
 **Granularidade**: 1 registro = 1 cliente  
@@ -270,14 +191,9 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 | cliente_id | string | Identificador único para cada cliente, composto por 13 caracteres alfanuméricos em minúsculas. | Unique identifier for each client, consisting of 13 alphanumeric characters in lowercase. |
 | cep_prefixo | string | Os primeiros 5 dígitos do CEP do cliente. | The first 5 digits of the client postal code. |
 
-**Uso**:
-- Identificação de clientes em transações
-- Análise geográfica (via `cep_prefixo`)
-- Segmentação de clientes por região
-
 ---
 
-<h2 align="center">🏢 DIMENSÃO: dim_vendedores</h2>
+<h2 align="center">dim_vendedores</h2>
 
 **Tipo**: Dimensão (Dimension Table)  
 **Granularidade**: 1 registro = 1 vendedor (seller)  
@@ -290,14 +206,9 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 | vendedor_id | string | Identificador único para cada vendedor, composto por 13 caracteres alfanuméricos em minúsculas. | Unique identifier for each seller, consisting of 13 alphanumeric characters in lowercase. |
 | cep_prefixo | string | Os primeiros 5 dígitos do CEP do vendedor. | The first 5 digits of the seller's postal code. |
 
-**Uso**:
-- Identificação de vendedores em transações
-- Análise de performance por vendedor
-- Análise geográfica de vendedores
-
 ---
 
-<h2 align="center">🌍 DIMENSÃO: dim_geolocalizacao</h2>
+<h2 align="center">dim_geolocalizacao</h2>
 
 **Tipo**: Dimensão Geográfica (Geography Dimension)  
 **Granularidade**: 1 registro = 1 prefixo de CEP (5 dígitos)  
@@ -317,12 +228,6 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 - `estado`: Siglas dos 27 estados brasileiros (AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO)
 - `latitude`: -33.75 a 5.27 (limites do Brasil)
 - `longitude`: -73.99 a -34.79 (limites do Brasil)
-
-**Uso**:
-- Análises geográficas (mapas de calor)
-- Segmentação por estado/cidade
-- Cálculo de distâncias (frete, logística)
-- Identificação de regiões de risco
 
 ---
 
@@ -386,15 +291,6 @@ A partir deste modelo dimensional, podem ser calculadas diversas métricas de ne
 - [x] Coordenadas geográficas dentro dos limites do Brasil
 - [x] Datas no range esperado (2016-2018)
 - [x] Valores numéricos positivos (exceto lat/long)
-
----
-
-## 📚 Referências
-
-- **Documentação ETL**: [etl.md](./etl.md)
-- **Perguntas de Negócio**: [perguntas.md](./perguntas.md)
-- **Autoavaliação do MVP**: [autoavaliação.md](./autoavaliação.md)
-- **README Principal**: [README.md](../README.md)
 
 ---
 

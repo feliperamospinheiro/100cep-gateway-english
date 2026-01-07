@@ -33,6 +33,24 @@ Pipeline de dados construído no Databricks para simular o processamento de pedi
 
 O projeto segue boas práticas de Data Lakehouse, utilizando Delta Lake, Unity Catalog e a arquitetura **Bronze → Silver → Gold**.
 
+**Organização do repositório:**
+
+```
+📁 100cep-gateway
+├── 📁 .databricks
+│   └── 📁 pipeline
+│       ├── 📁 html # contém os arquivos databricks em formato .html
+│       └── 📁 notebooks # contém os arquivos databricks em formato .ipynb
+├── 📁 datasets 
+│   ├── 📁 ai_dataset # contém o dataset gerado pelo modelo OpenAI 5.0
+│   └── 📁 olist_dataset # contém os datasets Brazilian E-Commerce Public Dataset by Olist
+├── 📁 dbdiagram # contém o código realizado no dbdiagram.io
+├── 📁 images
+│   ├── 📁 databricks # evidências do databricks
+│   ├── 📁 dbdiagram # schema do dbdiagram.io
+│   └── 📁 logo # logo da 100cep Gateway
+```
+
 ---
 <h2 align="center">100cep Gateway</h2>
 
@@ -50,7 +68,7 @@ Nosso objetivo é permitir **transações rápidas**, **seguras** e **sem fronte
 
 ---
 
-<h2 align="center">🛠️ Tecnologias Utilizadas</h2>
+<h2 align="center">Tecnologias Utilizadas</h2>
 
 ### Plataforma e Armazenamento
 - **Databricks**: Plataforma de dados unificada
@@ -71,7 +89,7 @@ Nosso objetivo é permitir **transações rápidas**, **seguras** e **sem fronte
 - **dbdiagram.io**: Modelagem de dados
 
 ---
-<h2 align="center">🎯 Objetivo do Projeto</h2>
+<h2 align="center">Objetivo do Projeto</h2>
 
 Este MVP tem como objetivo construir um pipeline de engenharia de dados completo para:
 
@@ -171,7 +189,7 @@ A carga foi estruturada em três passos principais:
 ---
 <h2 align="center">Análises Realizadas</h2>
 
-## 🔍 a) Qualidade dos Dados
+## a) Qualidade dos Dados
 Foi feita uma análise de:
 
 - valores ausentes  
@@ -190,7 +208,7 @@ As correções foram aplicadas na camada Silver, garantindo:
 
 ---
 
-## 🧠 b) Solução do Problema (Perguntas de Negócio)
+## b) Solução do Problema (Perguntas de Negócio)
 
 As análises Gold respondem perguntas como:
 

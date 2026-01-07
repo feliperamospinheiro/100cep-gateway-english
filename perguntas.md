@@ -17,11 +17,6 @@ Este documento lista todas as perguntas de negócio a serem respondidas pelo MVP
 - Investimento em infraestrutura de processamento
 - Estratégias de marketing focadas em métodos específicos
 
-**Métricas esperadas**:
-- Distribuição percentual por tipo de pagamento (credit_card, boleto, debit_card, voucher)
-- Volume total de transações por método
-- Ticket médio por método de pagamento
-
 ---
 
 ### 2️⃣ Performance Financeira
@@ -34,12 +29,6 @@ Este documento lista todas as perguntas de negócio a serem respondidas pelo MVP
 - Planejar recursos operacionais
 - Projetar crescimento futuro
 - Avaliar efetividade de campanhas comerciais
-
-**Métricas esperadas**:
-- Faturamento mensal agregado
-- Taxa de crescimento MoM (Month over Month)
-- Comparação entre trimestres
-- Análise de tendências
 
 ---
 
@@ -54,12 +43,6 @@ Este documento lista todas as perguntas de negócio a serem respondidas pelo MVP
 - Provisionar reservas financeiras
 - Negociar termos com adquirentes
 
-**Métricas esperadas**:
-- Taxa de chargeback (% de pedidos com chargeback)
-- Volume absoluto de chargebacks
-- Comparação com benchmarks do setor
-- Impacto financeiro estimado
-
 ---
 
 **Pergunta 4**: Quais métodos de pagamento têm maior risco de chargeback?
@@ -69,12 +52,6 @@ Este documento lista todas as perguntas de negócio a serem respondidas pelo MVP
 - Ajustar precificação (MDR) por método
 - Implementar verificações adicionais para métodos de alto risco
 - Educar vendedores sobre práticas seguras
-
-**Métricas esperadas**:
-- Taxa de chargeback por método de pagamento
-- Ranking de risco (do maior para o menor)
-- Valor médio de chargeback por método
-- Tempo médio até contestação
 
 ---
 
@@ -88,12 +65,6 @@ Este documento lista todas as perguntas de negócio a serem respondidas pelo MVP
 - Implementar regras de análise por localização
 - Planejar estratégias regionais de expansão
 - Compreender padrões de fraude por região
-
-**Métricas esperadas**:
-- Taxa de chargeback por estado (UF)
-- Mapa de calor de risco
-- Top 5 estados com maior/menor taxa
-- Correlação com volume de vendas
 
 ---
 
@@ -117,16 +88,5 @@ As análises serão realizadas utilizando as tabelas da **camada Gold**:
 - `dim_geolocalizacao`: Dados geográficos para análise regional
 - `dim_data`: Dimensão temporal para análises históricas
 - `dim_clientes` e `dim_vendedores`: Perfis de clientes e vendedores
-
----
-
-## 🔄 Próximos Passos
-
-Após responder essas perguntas fundamentais, o MVP poderá expandir para:
-- Análise de cohort de clientes
-- Previsão de chargeback com ML
-- Análise de perfil de fraude
-- Otimização de rotas de pagamento
-- Segmentação de vendedores por performance
 
 ---
