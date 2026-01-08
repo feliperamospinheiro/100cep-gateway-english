@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://shields.io/">
-    <img src="https://img.shields.io/badge/status-in%20concluded-green.svg" alt="Status">
+    <img src="https://img.shields.io/badge/status-concluded-green.svg" alt="Status">
   </a>
   <a href="https://www.databricks.com/">
     <img src="https://img.shields.io/badge/Databricks-Data%20Platform-orange?logo=databricks&logoColor=white" alt="Databricks">
